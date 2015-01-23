@@ -1,0 +1,217 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'Capriola-Regular'; /*a name to be used later*/
+    src: url('font/Capriola-Regular.ttf'); /*URL to font*/
+}
+
+body{
+	cursor: url(http://cur.cursors-4u.net/symbols/sym-6/sym597.cur), progress !important;
+	font-family:'Capriola-Regular';
+	font-size:12px;
+	background-color:#532637;
+	color:#FFF;
+}
+
+.mainNav{
+	font-size: 12px;
+}
+
+a.mainNav:link{
+	color: #FFF;
+	text-decoration: none;
+}
+
+a.mainNav:hover{
+	cursor: url(http://cur.cursors-4u.net/symbols/sym-6/sym594.cur), progress !important;
+	color: #FFA7E5;
+	text-decoration: underline;
+}
+
+a.mainNav:active{
+	color: #FFD8A7;
+	text-decoration: none;
+}
+
+a.mainNav:visited{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#logoMain{
+	font-size:20px;
+	padding:0px;
+	margin-left:7px;
+	margin-top: 4px;
+}
+
+#forScrolling{
+	position: absolute;
+	background-color: transparent;
+	top: 10px; /* Header Height */
+    bottom: 10px; /* Footer Height */
+    left:10px;
+	right:10px;
+	overflow: auto;
+}
+
+#frameMain{
+	position: absolute;
+	border-radius:10px;
+	top: 10px; /* Header Height */
+    bottom: 10px; /* Footer Height */
+    left:10px;
+	right:10px;
+	overflow: auto;
+	background-color:#925F76;
+}
+
+#frameInnerTop{
+	position: relative;
+	padding: 10px;
+	top: 0px;
+	height: 30px;
+	border-radius:10px 10px 0px 0px;
+	background-color:#A63350;
+	border-bottom: 5px solid #532637;
+}
+
+#frameSubTop{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	height: 15px;
+	background-color:#925F9E;
+	border-bottom: 5px solid #532637;
+}
+
+#frameHomeBanner{
+	position:relative;
+	height: 200px;
+	background-color:#808080;
+	overflow:hidden;
+	background-repeat:repeat-x;
+	display: none;
+}
+
+#frameHomeBannerLoader{
+	position: absolute;
+	display: none;
+	font-size: 16px;
+	width: 100%;
+	height: 200px;
+	line-height: 200px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#frameHomeBannerDummy{
+	position:relative;
+	height: 200px;
+	background-color:#532637;
+	border-bottom: 5px solid #532637;
+	overflow:hidden;
+}
+
+#frameHomeContent{
+	position:relative;
+	padding:5px 17px 5px 17px;
+}
+
+.forPreloading{
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	display: none;
+	opacity: 0;
+	overflow: hidden;
+}
+
+#gallerySubmenu{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	height: 15px;
+	background-color:#4B6EAC;
+	border-bottom: 5px solid #532637;
+	display: none;
+}
+
+#galleryThumbsFrame{
+	position: relative;
+	padding: 10px;
+}
+
+.thumbnail{
+	position:relative;
+	width: 100px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+	overflow: hidden;
+	opacity: 0.5;
+}
+
+.thumbnailPic{
+	position: absolute;
+	display: none;
+}
+
+.thumbnailLoadingFrame{
+	position: absolute;
+	display: inline-block;
+	display: none;
+	font-size: 16px;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.thumbnailHover{
+	position: absolute;
+	width: 100px;
+	top: 100px;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+#frameAboutContent{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	display: none;
+}
+
+.collectionName{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: transparent;
+	display: none;
+	text-align: left;
+	vertical-align: middle;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+#highlightBox{
+	position: absolute;
+	top: 0px; /* Header Height */
+    bottom: 0px; /* Footer Height */
+    left:0px;
+	right:0px;
+	background-image: url(pics/blackback40.png);
+	display: none;
+}
+
+#lePic{
+	position: fixed;
+	display: none;
+	border: 20px solid rgba(0, 0, 0, .5);
+}
+
+.galleryBlankBreak{
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+	display: inline-block;
+}
