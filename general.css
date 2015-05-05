@@ -7,36 +7,51 @@
 }
 
 body{
-	cursor: url(http://cur.cursors-4u.net/symbols/sym-6/sym597.cur), progress !important;
 	font-family:'Capriola-Regular';
 	font-size:12px;
-	background-color:#532637;
+	background-color:#130F1F;
 	color:#FFF;
+}
+
+p{
+  text-align: justify;
 }
 
 .mainNav{
 	font-size: 12px;
 }
 
-a.mainNav:link{
+a:link{
 	color: #FFF;
 	text-decoration: none;
 }
 
-a.mainNav:hover{
-	cursor: url(http://cur.cursors-4u.net/symbols/sym-6/sym594.cur), progress !important;
+a:hover{
 	color: #FFA7E5;
 	text-decoration: underline;
 }
 
-a.mainNav:active{
+a:active{
 	color: #FFD8A7;
 	text-decoration: none;
 }
 
-a.mainNav:visited{
+a:visited{
 	color: #FFF;
 	text-decoration: none;
+}
+
+.unselectable{
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	/*
+	 Introduced in IE 10.
+	 See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+	*/
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #logoMain{
@@ -64,7 +79,7 @@ a.mainNav:visited{
     left:10px;
 	right:10px;
 	overflow: auto;
-	background-color:#925F76;
+	background-color:#221B37;
 }
 
 #frameInnerTop{
@@ -73,16 +88,16 @@ a.mainNav:visited{
 	top: 0px;
 	height: 30px;
 	border-radius:10px 10px 0px 0px;
-	background-color:#A63350;
-	border-bottom: 5px solid #532637;
+	background-color:#561A3D;
+	border-bottom: 5px solid #130F1F;
 }
 
 #frameSubTop{
 	position: relative;
 	padding:5px 17px 5px 17px;
 	height: 15px;
-	background-color:#925F9E;
-	border-bottom: 5px solid #532637;
+	background-color: #6D3575;
+	border-bottom: 5px solid #130F1F;
 }
 
 #frameHomeBanner{
@@ -108,8 +123,8 @@ a.mainNav:visited{
 #frameHomeBannerDummy{
 	position:relative;
 	height: 200px;
-	background-color:#532637;
-	border-bottom: 5px solid #532637;
+	background-color:#130F1F;
+	border-bottom: 5px solid #130F1F;
 	overflow:hidden;
 }
 
@@ -131,14 +146,26 @@ a.mainNav:visited{
 	position: relative;
 	padding:5px 17px 5px 17px;
 	height: 15px;
-	background-color:#4B6EAC;
-	border-bottom: 5px solid #532637;
+	background-color:#564A7B;
+	border-bottom: 5px solid #130F1F;
 	display: none;
 }
 
 #galleryThumbsFrame{
 	position: relative;
 	padding: 10px;
+}
+
+#galleryAnimationFrame{
+	position: relative;
+	padding: 10px;
+  display: none;
+}
+
+#gallery3dFrame{
+  position: relative;
+	padding: 10px;
+  display: none;
 }
 
 .thumbnail{
@@ -149,6 +176,7 @@ a.mainNav:visited{
 	display: inline-block;
 	overflow: hidden;
 	opacity: 0.5;
+  vertical-align: middle;
 }
 
 .thumbnailPic{
@@ -160,12 +188,19 @@ a.mainNav:visited{
 	position: absolute;
 	display: inline-block;
 	display: none;
-	font-size: 16px;
+	font-size: 14px;
 	width: 100px;
 	height: 100px;
-	line-height: 100px;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.thumbnailLoadingText{
+  display: inline-block;
+	font-size: 12px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .thumbnailHover{
@@ -199,7 +234,7 @@ a.mainNav:visited{
     bottom: 0px; /* Footer Height */
     left:0px;
 	right:0px;
-	background-image: url(pics/blackback40.png);
+	background-color: rgba(0, 0, 0, .5);
 	display: none;
 }
 
@@ -209,9 +244,36 @@ a.mainNav:visited{
 	border: 20px solid rgba(0, 0, 0, .5);
 }
 
+.highlightBoxNav{
+	font-size: 30px;
+	color: #FFF;
+	position: fixed;
+	text-align: center;
+	width: 120px;
+	background-color: rgba(0, 0, 0, .5);
+	opacity: 0;
+}
+
+.highlightBoxNavSymbol{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .galleryBlankBreak{
 	width: 100%;
 	height: 30px;
 	background-color: transparent;
 	display: inline-block;
+}
+
+.aboutMePortrait{
+  float: left;
+  padding-top: 10px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+}
+
+.heart{
+  color: #8E2D57;
 }
