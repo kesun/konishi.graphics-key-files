@@ -4,9 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Konishi Graphics</title>
 <link href="general.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="libs/jquery.waitforimages.min.js"></script>
 <script src="galleryImages.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="home.js"></script>
 </head>
 
@@ -16,31 +18,58 @@
         	<p id="logoMain">Konishi Graphics</p>
         </div>
         <div id="frameSubTop">
-        	<a class="mainNav" id="mainNavHome" href="#">Home</a> ∙ <a class="mainNav" id="mainNavGallery" href="#">Gallery</a> ∙ Projects ∙ <a class="mainNav" id="mainNavAbout" href="#">About</a>
+        	<a class="mainNav" id="mainNavHome" href="#">Home</a> &nbsp;&nbsp;∙&nbsp;&nbsp; <a class="mainNav" id="mainNavGallery" href="#">Gallery</a> &nbsp;&nbsp;∙&nbsp;&nbsp; <a class="mainNav" id="mainNavAbout" href="#">About</a>
         </div>
         <div id="frameHomeBannerDummy">
             <div id="frameHomeBanner"></div>
-            <div id="frameHomeBannerLoader">∙♥∙</div>
+            <div id="frameHomeBannerLoader"><span class="thumbnailLoadingText">∙<span class="heart">♥</span> Loading <span class="heart">♥</span>∙</span></div>
         </div>
         <div id="frameHomeContent">
-        	<p>:: Site Under Construction ::</p><br />
         	<p>Welcome to the artistically creative corner of my life, where emotions and imaginations intertwine into visual presentations.</p>
             <p>On this site, you will find various collections of my past and present works. Plenty of my works are very dated, since I've been very occupied with schools and now work, as well. Because my profession is software development, my creative expression time only occurs inbetween those lengthy but exciting coding and debugging sessions.</p>
             <p>To learn more about me and the possiblity of commission works, please click on the "About" tab.</p>
-            <p>Other than that, I hope you enjoy exploring around my creations!</p>
+            <p>Other than that, I hope you enjoy exploring around my creations!</p><br />
+            <p>Tip: Right click on a thumbnail in the gallery will bring up the respective full-sized picture in a new tab.</p>
+						<p>Note: I'm using a free hosting service that doesn't allow hotlinking, so don't even think about directly linking the pictures elsewhere...it's not possible. Sorry!</p>
         </div>
 
         <div id="gallerySubmenu">
-            ↳ <a class="mainNav" id="gallerySubTest" href="#">Test</a> ∙ More Test
+            ↳ <a class="subNav" id="subNavTwoDim" href="#">2D</a> &nbsp;&nbsp;∙&nbsp;&nbsp; <a class="subNav" id="subNavThreeDim" href="#">3D</a> &nbsp;&nbsp;∙&nbsp;&nbsp; <a class="subNav" id="subNavAnimation" href="#">Animation</a>
         </div>
         <div id="galleryThumbsFrame">
         </div>
-        <div id="frameAboutContent">
-            <p>Test</p>
+				<div id="galleryAnimationFrame">
+					<iframe width="420" height="315" src="https://www.youtube.com/embed/dxPb8Qt1Iy0?rel=0" frameborder="0" allowfullscreen></iframe>
         </div>
+				<div id="gallery3dFrame">
+					<a class="3dLink" target="_blank" href="http://tinyurl.com/qxdr6oa">Sisterhood Ice Shards</a>: A cosmetic item for DotA2.<br />
+					<a class="3dLink" target="_blank" href="https://www.youtube.com/watch?v=nEgyddc5rnI">Beach wave simulation</a>: An animated model simulated in Houdini.<br />
+        </div>
+        <div id="frameAboutContent">
+						<img class="aboutMePortrait" src="pics/about-me-portrait.png" />
+            <p>Hello, I'm Konishi. That's the name I go by nowadays with creative works. I'm an illustration and design hobbyist, and this website serves as a general demonstration of my works.</p>
+            <p>According to my boss, I'm "a coder by day, an artist by night". Visual art has been a mean of expressions for me since at a very young age. I've been exposed to many genres of art, and also have varied experiences creating them with different tools.</p>
+            <p>A great amount of works were made when I was younger, because that's when I had the most time with hobbies outside of school, hah! My works won several awards during school-wide competitions, and a few Chinese watercolour paintings were chosen to be included in the provincial juniour high art textbook.</p>
+            <p>My current digital tools of trade are, but not exclusively: Photoshop, Paintool SAI, Maya, ZBrush, Flash.</p>
+            <p>If you are interested in my art works, feel free to ask me and I may be able to do commission on a case-by-case basis.</p>
+            <p>Thank you for visiting!</p></br>
+            <p>Contact email: <a href="mailto: konishigraphics@gmail.com">konishigraphics@gmail.com</a></p></br>
+            <p>P.S.: You may see snow365.me watermarked in some of the illustrations. That's a doodle dump that I'm retiring. However, the originals of many of the old works are lost, so I'm keeping them as-is.</p>
+        		<p>P.S.2: I hope you enjoy the website! I crafted it from ground up with nothing but humble love (plus a mountain pile of JavaScript among other things)! I'd love to hear feedbacks about it so I can make it better. :D</p>
+				</div>
     </div>
     <div id="highlightBox">
         <img id="lePic"/>
+        <div class="highlightBoxNav" id="highlightBoxNavLeft">
+            <div class="highlightBoxNavSymbol">
+                <
+            </div>
+        </div>
+        <div class="highlightBoxNav" id="highlightBoxNavRight">
+            <div class="highlightBoxNavSymbol">
+                >
+            </div>
+        </div>
     </div>
 </body>
 </html>
