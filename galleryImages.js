@@ -23,7 +23,7 @@ var banners = {
 
 var galleries = [
 	{
-		galleryName: "Sample Collection (loading icon ready)",
+		galleryName: "Digital Illustrations",
 		galleryPath: "",
 		galleryDatabase: [
 			{
@@ -67,6 +67,36 @@ var galleries = [
 				title: "Milky",
 				thumbLeft: 1100,
 				thumbTop: 200
+			},{
+				fileName: "red-koi.jpg",
+				title: "Red Koi",
+				thumbLeft: 265,
+				thumbTop: 665
+			},{
+				fileName: "simple-peonies.jpg",
+				title: "Simple Peonies",
+				thumbLeft: 260,
+				thumbTop: 350
+			},{
+				fileName: "insomnia-kester1.jpg",
+				title: "Kester (Insomnia)",
+				thumbLeft: 475,
+				thumbTop: 175
+			},{
+				fileName: "insomnia-walk.jpg",
+				title: "Walk (Insomnia)",
+				thumbLeft: 325,
+				thumbTop: 205
+			},{
+				fileName: "insomnia-pancake.jpg",
+				title: "Pancake (Insomnia)",
+				thumbLeft: 250,
+				thumbTop: 115
+			},{
+				fileName: "insomnia-ragazzo.jpg",
+				title: "Ragazzo (Insomnia)",
+				thumbLeft: 435,
+				thumbTop: 475
 			}
 		]
 	},{
@@ -101,6 +131,22 @@ var galleries = [
 			}
 		]
 	},{
+		galleryName: "Pencils / Charcoal / Crayons / etc.",
+		galleryPath: "",
+		galleryDatabase: [
+			{
+				fileName: "flowers.jpg",
+				title: "Flowers",
+				thumbLeft: 140,
+				thumbTop: 400
+			},{
+				fileName: "skeleton-anatomy.jpg",
+				title: "Skeleton Anatomy",
+				thumbLeft: 460,
+				thumbTop: 210
+			}
+		]
+	},{
 		galleryName: "Chinese Watercolour",
 		galleryPath: "",
 		galleryDatabase: [
@@ -109,6 +155,183 @@ var galleries = [
 				title: "Cotton Rose",
 				thumbLeft: 670,
 				thumbTop: 640
+			},{
+				fileName: "haitang.jpg",
+				title: "Begoniaceae",
+				thumbLeft: 260,
+				thumbTop: 100
+			},{
+				fileName: "family.jpg",
+				title: "Family",
+				thumbLeft: 600,
+				thumbTop: 950
+			},{
+				fileName: "red-silk-balls.jpg",
+				title: "Red Silk Balls",
+				thumbLeft: 315,
+				thumbTop: 560
+			},{
+				fileName: "resting.jpg",
+				title: "Resting",
+				thumbLeft: 355,
+				thumbTop: 335
+			},{
+				fileName: "danya.jpg",
+				title: "Rhododendron",
+				thumbLeft: 360,
+				thumbTop: 565
+			},{
+				fileName: "tianxiang.jpg",
+				title: "Peony",
+				thumbLeft: 1035,
+				thumbTop: 365
+			},{
+				fileName: "blue-goldfish.jpg",
+				title: "Blue Goldfish",
+				thumbLeft: 845,
+				thumbTop: 510
+			},{
+				fileName: "bird-play.jpg",
+				title: "Bird Play",
+				thumbLeft: 265,
+				thumbTop: 650
+			},{
+				fileName: "spring.jpg",
+				title: "Bird Play",
+				thumbLeft: 590,
+				thumbTop: 370
+			},{
+				fileName: "in-the-rain.jpg",
+				title: "In the Rain",
+				thumbLeft: 525,
+				thumbTop: 608
+			},{
+				fileName: "setting-sun.jpg",
+				title: "Setting Sun",
+				thumbLeft: 443,
+				thumbTop: 188
+			},{
+				fileName: "vines.jpg",
+				title: "Vines",
+				thumbLeft: 618,
+				thumbTop: 245
+			},{
+				fileName: "under-the-wisteria-shades.jpg",
+				title: "Under the Wisteria Shades",
+				thumbLeft: 220,
+				thumbTop: 1162
+			}
+		]
+	},{
+		galleryName: "DotA 2 Cosmetics Concept / Designs",
+		galleryPath: "",
+		galleryDatabase: [
+			{
+				fileName: "asashin-hime.jpg",
+				title: "Asashin Hime (PA)",
+				thumbLeft: 215,
+				thumbTop: 170
+			},{
+				fileName: "sacred-avialae.jpg",
+				title: "Sacred Avialae (PA)",
+				thumbLeft: 255,
+				thumbTop: 360
+			}
+		]
+	},{
+		galleryName: "Random Scraps",
+		galleryPath: "",
+		galleryDatabase: [
+			{
+				fileName: "me.jpg",
+				title: "Me",
+				thumbLeft: 400,
+				thumbTop: 1075
+			},{
+				fileName: "elemental-goddess-wood.jpg",
+				title: "Elemental Goddess - Wood",
+				thumbLeft: 345,
+				thumbTop: 235
+			},{
+				fileName: "elemental-goddess-water.jpg",
+				title: "Elemental Goddess - Water",
+				thumbLeft: 395,
+				thumbTop: 340
+			},{
+				fileName: "elemental-goddess-metal.jpg",
+				title: "Elemental Goddess - Metal",
+				thumbLeft: 430,
+				thumbTop: 210
+			},{
+				fileName: "elemental-goddess-earth.jpg",
+				title: "Elemental Goddess - Earth",
+				thumbLeft: 220,
+				thumbTop: 265
+			},{
+				fileName: "elemental-goddess-fire.jpg",
+				title: "Elemental Goddess - Fire",
+				thumbLeft: 380,
+				thumbTop: 290
+			},{
+				fileName: "the-pet.jpg",
+				title: "The Pet",
+				thumbLeft: 710,
+				thumbTop: 395
+			},{
+				fileName: "portrait-practice.jpg",
+				title: "Portrait (practice)",
+				thumbLeft: 265,
+				thumbTop: 465
+			},{
+				fileName: "mia.jpg",
+				title: "Mia",
+				thumbLeft: 410,
+				thumbTop: 240
+			},{
+				fileName: "masquerade.jpg",
+				title: "Masquerade",
+				thumbLeft: 1120,
+				thumbTop: 335
+			},{
+				fileName: "lee-jung-hyun.jpg",
+				title: "Lee Jung-hyun",
+				thumbLeft: 290,
+				thumbTop: 505
+			},{
+				fileName: "kalashnikova.jpg",
+				title: "Kalashnikova",
+				thumbLeft: 605,
+				thumbTop: 310
+			},{
+				fileName: "commission-mitzu.jpg",
+				title: "Mitzu (commission)",
+				thumbLeft: 670,
+				thumbTop: 520
+			},{
+				fileName: "bird-divinity.jpg",
+				title: "Bird Divinity",
+				thumbLeft: 185,
+				thumbTop: 120
+			},{
+				fileName: "xiaoman.jpg",
+				title: "Xiao Man",
+				thumbLeft: 570,
+				thumbTop: 125
+			},{
+				fileName: "zhiyin.jpg",
+				title: "Zhi Yin",
+				thumbLeft: 295,
+				thumbTop: 420
+			},{
+				fileName: "turkey-wannabe.jpg",
+				title: "Turkey Wannabe",
+				thumbLeft: 385,
+				thumbTop: 675
+			},{
+				fileName: "yulia.jpg",
+				title: "Yulia",
+				thumbLeft: 445,
+				thumbTop: 725
 			}
 		]
 	}
