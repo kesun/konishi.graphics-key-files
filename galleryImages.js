@@ -29,6 +29,7 @@ var galleries = [
 			{
 				fileName: "a-moment-in-nature.jpg",
 				title: "A Moment in Nature",
+				desc: "In the face of natual nemesis, protective motherly love outshines all.",
 				thumbLeft: 580,
 				thumbTop: 200
 			},
@@ -41,6 +42,7 @@ var galleries = [
 			{
 				fileName: "hmm-strawberries.jpg",
 				title: "Hmm... Strawberries",
+				desc: "I spent quite a bit of effort on that delicate tea set!",
 				thumbLeft: 240,
 				thumbTop: 900
 			},
@@ -53,18 +55,21 @@ var galleries = [
 			{
 				fileName: "linger.jpg",
 				title: "Ling Er",
+				desc: "Fan art of the legendary main character from the first game Chinese Paladin RPG franchise. I was going for a Chinese watercolour inspired theme.",
 				thumbLeft: 462,
 				thumbTop: 285
 			},
 			{
 				fileName: "suyu-final.jpg",
 				title: "Suyu",
+				desc: "Fan art of a minor character from the forth instalment of the Chinese Paladin RPG franchise. ",
 				thumbLeft: 1180,
 				thumbTop: 880
 			},
 			{
 				fileName: "milky.jpg",
 				title: "Milky",
+				desc: "The reflection of the dazzling milky way against a calm and shallow body of water is always a dream-like image in my imagination.",
 				thumbLeft: 1100,
 				thumbTop: 200
 			},{
@@ -106,6 +111,7 @@ var galleries = [
 			{
 				fileName: "harvest.jpg",
 				title: "Harvest",
+				desc: "In my hometown province of Yunnan in China, there's a city called Luoping that's famed for the beautiful and grand canola fields.",
 				thumbLeft: 470,
 				thumbTop: 790
 			},{
@@ -137,6 +143,7 @@ var galleries = [
 			{
 				fileName: "flowers.jpg",
 				title: "Flowers",
+				desc: "I went through a massive day-night-day marathon on this one, as one of the projects for my art class in university. Prof didn't think I could do it because she thought the picture was too difficult, I took up the challenge and conquered. :D",
 				thumbLeft: 140,
 				thumbTop: 400
 			},{
@@ -229,6 +236,7 @@ var galleries = [
 			{
 				fileName: "asashin-hime.jpg",
 				title: "Asashin Hime (PA)",
+				desc: "A hime x ninja inspired concept for PA. I'm currently slowly working with the 3D modeling of it. Still learning Maya & ZBrush.",
 				thumbLeft: 215,
 				thumbTop: 170
 			},{
@@ -245,6 +253,7 @@ var galleries = [
 			{
 				fileName: "me.jpg",
 				title: "Me",
+				desc: "Selfie!",
 				thumbLeft: 400,
 				thumbTop: 1075
 			},{
