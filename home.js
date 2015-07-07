@@ -14,7 +14,7 @@ $(window).load(function(){
 
 $(function() {
 	// Find all YouTube videos
-	var $allVideos = $("iframe"),
+	var $allVideos = $(".animationVid"),
 
 	    // The element that is fluid width
 	    $fluidEl = $("#galleryAnimationFrame");
@@ -38,11 +38,12 @@ $(document).ready(function(){
 			var galleryLeft = $('#mainNavGallery').position().left;
 			$('#gallerySubmenu').css('padding-left', galleryLeft);
 			$('#gallery3dFrame').stop().fadeOut(300, function(){
+				toggleVideo('hide');
 				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
 					$('#frameAboutContent').stop().fadeOut(300, function(){
 						$('#frameHomeContent').stop().fadeOut(300, function(){
 							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#gallerySubmenu').stop().fadeIn(300, function(){
+							 	$('#gallerySubmenu').stop().fadeIn(300, function(){
 									clearGallery();
 									$('#galleryThumbsFrame').stop().fadeIn(300, function(){
 										insideGallery = true;
@@ -63,6 +64,7 @@ $(document).ready(function(){
 			insideAnimation = false;
 			var galleryLeft = $('#mainNavGallery').position().left;
 			$('#gallery3dFrame').stop().fadeOut(300, function(){
+				toggleVideo('hide');
 				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
 					$('#frameAboutContent').stop().fadeOut(300, function(){
 						$('#frameHomeContent').stop().fadeOut(300, function(){
@@ -92,6 +94,7 @@ $(document).ready(function(){
 						$('#frameHomeContent').stop().fadeOut(300, function(){
 							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
 								$('#galleryAnimationFrame').stop().fadeIn(300, function(){
+									toggleVideo('hide');
 									winResized();
 									insideAnimation = true;
 									//
@@ -109,6 +112,7 @@ $(document).ready(function(){
 			insideGallery = false;
 			insideAnimation = false;
 			$('#frameAboutContent').stop().fadeOut(300, function(){
+				toggleVideo('hide');
 				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
 					$('#galleryThumbsFrame').stop().fadeOut(300, function(){
 						$('#frameHomeContent').stop().fadeOut(300, function(){
@@ -130,7 +134,8 @@ $(document).ready(function(){
 		insideGallery = false;
 		inside3D = false;
 		$('#frameHomeBanner').stop().hide();
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
+		$('#gallery3dFrame').stop().fadeOut(300, function(){
+			toggleVideo('hide');
 			$('#galleryAnimationFrame').stop().fadeOut(300, function(){
 				$('#frameAboutContent').stop().fadeOut(300, function(){
 					$('#galleryThumbsFrame').stop().fadeOut(300, function(){
@@ -151,7 +156,8 @@ $(document).ready(function(){
 		insideAnimation = false;
 		insideGallery = false;
 		inside3D = false;
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
+		$('#gallery3dFrame').stop().fadeOut(300, function(){
+			toggleVideo('hide');
 			$('#galleryAnimationFrame').stop().fadeOut(300, function(){
 				$('#galleryThumbsFrame').stop().fadeOut(300, function(){
 					$('#gallerySubmenu').stop().fadeOut(300, function(){
@@ -222,6 +228,13 @@ $(document).ready(function(){
 			var temp = $(children[2]);
 			temp.stop();
 			temp.animate({ 'top': 100 - parseInt(temp.css('height').substring(0, temp.css('height').length - 2)) + 'px' });
+			if($(this).data('desc') != undefined){
+				$('#thumbnailDesc').text($(this).data('desc'));
+				$('#thumbnailDesc').parent()
+					.css('top', $(this).position().top + 100 + 'px')
+					.css('left', $(this).position().left - 5 + 'px')
+					.show();
+			}
 		}
 	});
 
@@ -232,6 +245,7 @@ $(document).ready(function(){
 			var temp = $(children[2]);
 			temp.stop();
 			temp.animate({ 'top': 100 + parseInt(temp.css('height').substring(0, temp.css('height').length - 2)) + 'px' });
+			$('#thumbnailDesc').parent().hide();
 		}
 	});
 
@@ -310,6 +324,9 @@ function loadGallery(galInd, gallery, path, ind, prevElem){
 					curPic.fadeIn(500, function(){
 						var temp = base.append('<div class="thumbnailHover">' + gallery[ind].title + '</div>');
 						temp.children().find('.thumbnailHover').css('top', 100);
+						if(gallery[ind].hasOwnProperty('desc')){
+							base.data('desc', gallery[ind].desc);
+						}
 						loadGallery(galInd, gallery, path, ind + 1, newObj);
 					});
 				});
@@ -331,7 +348,10 @@ function loadingImage(obj){
 }
 
 function clearGallery(){
-	$('#galleryThumbsFrame').empty();
+	//$('#galleryThumbsFrame').empty();
+	$('.thumbnail').remove();
+	$('.galleryBlankBreak').remove();
+	$('.collectionName').remove();
 }
 
 
@@ -387,7 +407,7 @@ function winResized() {
 	}
 
 	// Find all YouTube videos
-	var $allVideos = $("iframe"),
+	var $allVideos = $(".animationVid"),
 
 	    // The element that is fluid width
 	    $fluidEl = $("#galleryAnimationFrame");
@@ -395,14 +415,17 @@ function winResized() {
 	// When the window is resized
 	// (You'll probably want to debounce this)
 	var newWidth = $fluidEl.width();
+	if(newWidth > 800){
+		newWidth = 800;
+	}
 
 	// Resize all videos according to their own aspect ratio
 	$allVideos.each(function() {
 
 		var $el = $(this);
 		$el
-			.width(newWidth / 2)
-			.height(newWidth * $el.data('aspectRatio') / 2);
+			.width(newWidth)
+			.height(newWidth * $el.data('aspectRatio'));
 
 	});
 }
@@ -426,4 +449,14 @@ function switchBigPic(nextPic){ // nextPic is the thumbnail obj
 			$('.highlightBoxNav').attr('display', 'display');
 		});
 	}
+}
+
+function toggleVideo(state) {
+    // if state == 'hide', hide. Else: show video
+    var iframes = $(".animationVid");
+    var func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+    iframes.each(function(){
+    	var curVid = this.contentWindow;
+		curVid.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+    });
 }
