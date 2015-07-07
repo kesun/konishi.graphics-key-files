@@ -1,429 +1,309 @@
-var insideGallery = false;
-var insideAnimation = false;
-var inside3D = false;
-var currentImageBig = null;
-var currentImageObj = null;
+@charset "utf-8";
+/* CSS Document */
 
-$(window).load(function(){
-	winResized();
-	loadingImage($('#frameHomeBannerLoader'));
-	loadBanners(0);
-}).bind('resize',function() {
-	winResized();
-});
-
-$(function() {
-	// Find all YouTube videos
-	var $allVideos = $("iframe"),
-
-	    // The element that is fluid width
-	    $fluidEl = $("#galleryAnimationFrame");
-
-	// Figure out and save aspect ratio for each video
-	$allVideos.each(function() {
-		$(this)
-			.data('aspectRatio', this.height / this.width)
-
-			// and remove the hard coded width/height
-			.removeAttr('height')
-			.removeAttr('width');
-	});
-});
-
-$(document).ready(function(){
-	$('#mainNavGallery').click(function(){
-		if(insideGallery == false){
-			inside3D = false;
-			insideAnimation = false;
-			var galleryLeft = $('#mainNavGallery').position().left;
-			$('#gallerySubmenu').css('padding-left', galleryLeft);
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
-				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
-					$('#frameAboutContent').stop().fadeOut(300, function(){
-						$('#frameHomeContent').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#gallerySubmenu').stop().fadeIn(300, function(){
-									clearGallery();
-									$('#galleryThumbsFrame').stop().fadeIn(300, function(){
-										insideGallery = true;
-										loadGalleries(0);
-									});
-								});
-							});
-						});
-					});
-				});
-			});
-		}
-	});
-
-	$('#subNavTwoDim').click(function(){
-		if(insideGallery == false){
-			inside3D = false;
-			insideAnimation = false;
-			var galleryLeft = $('#mainNavGallery').position().left;
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
-				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
-					$('#frameAboutContent').stop().fadeOut(300, function(){
-						$('#frameHomeContent').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#gallerySubmenu').stop().fadeIn(300, function(){
-									clearGallery();
-									$('#galleryThumbsFrame').stop().fadeIn(300, function(){
-										insideGallery = true;
-										loadGalleries(0);
-									});
-								});
-							});
-						});
-					});
-				});
-			});
-		}
-	});
-
-	$('#subNavAnimation').click(function(){
-		if(insideAnimation == false){
-			insideGallery = false;
-			inside3D = false;
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
-				$('#frameAboutContent').stop().fadeOut(300, function(){
-					$('#galleryThumbsFrame').stop().fadeOut(300, function(){
-						$('#frameHomeContent').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#galleryAnimationFrame').stop().fadeIn(300, function(){
-									winResized();
-									insideAnimation = true;
-									//
-								});
-							});
-						});
-					});
-				});
-			});
-		}
-	});
-
-	$('#subNavThreeDim').click(function(){
-		if(inside3D == false){
-			insideGallery = false;
-			insideAnimation = false;
-			$('#frameAboutContent').stop().fadeOut(300, function(){
-				$('#galleryAnimationFrame').stop().fadeOut(300, function(){
-					$('#galleryThumbsFrame').stop().fadeOut(300, function(){
-						$('#frameHomeContent').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#gallery3dFrame').stop().fadeIn(300, function(){
-									inside3D = true;
-									//
-								});
-							});
-						});
-					});
-				});
-			});
-		}
-	});
-
-	$('#mainNavHome').click(function(){
-		insideAnimation = false;
-		insideGallery = false;
-		inside3D = false;
-		$('#frameHomeBanner').stop().hide();
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
-			$('#galleryAnimationFrame').stop().fadeOut(300, function(){
-				$('#frameAboutContent').stop().fadeOut(300, function(){
-					$('#galleryThumbsFrame').stop().fadeOut(300, function(){
-						$('#gallerySubmenu').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeIn(300, function(){
-								loadingImage($('#frameHomeBannerLoader'));
-								loadBanners(0);
-								$('#frameHomeContent').stop().fadeIn(300);
-							});
-						});
-					});
-				});
-			});
-		});
-	});
-
-	$('#mainNavAbout').click(function(){
-		insideAnimation = false;
-		insideGallery = false;
-		inside3D = false;
-			$('#gallery3dFrame').stop().fadeOut(300, function(){
-			$('#galleryAnimationFrame').stop().fadeOut(300, function(){
-				$('#galleryThumbsFrame').stop().fadeOut(300, function(){
-					$('#gallerySubmenu').stop().fadeOut(300, function(){
-						$('#frameHomeContent').stop().fadeOut(300, function(){
-							$('#frameHomeBannerDummy').stop().fadeOut(300, function(){
-								$('#frameAboutContent').stop().fadeIn(300);
-							});
-						});
-					});
-				});
-			});
-		});
-	});
-
-	$('#gallerySubTest').click(function(){
-		$('#highlightBox').fadeIn(500);
-	});
-
-	$('#highlightBox').click(function(){
-		if($('#highlightBoxNavLeft').is(':hover') || $('#highlightBoxNavRight').is(':hover')){ // $('#lePic').is(':hover') || 
-		}else{
-			switchBigPic(null);
-		}
-	});
-
-	$('.highlightBoxNav').hover(
-		function(){
-			$(this).stop();
-			$(this).animate({
-				'opacity': 1
-			}, 'fast');
-		},
-		function(){
-			$(this).stop();
-			$(this).animate({
-				'opacity': 0
-			}, 'fast');
-		}
-	);
-
-	$('.highlightBoxNav').click(function(){
-		var next = null;
-		if($(this).attr('id') == "highlightBoxNavLeft"){
-			next = currentImageObj.prev();
-		}else if($(this).attr('id') == "highlightBoxNavRight"){
-			next = currentImageObj.next();
-		}
-		if(next.hasClass('thumbnail') && next.find('.thumbnailLoadingFrame').is(':animated') == false){
-			switchBigPic(next);
-		}else{
-			$(this).stop();
-			$(this).animate({
-				'background-color': 'rgba(225, 225, 225, .5)',
-				'color': '#000'
-			}, 100, function(){
-				$(this).animate({
-					'background-color': 'rgba(0, 0, 0, .5)',
-					'color': '#FFF'
-				}, 'fast');
-			});
-		}
-	});
-
-	$('#galleryThumbsFrame').on('mouseenter', '.thumbnail', function(){
-		$(this).stop().fadeTo(300, 1);
-		var children = $(this).children();
-		if(children.length > 2){
-			var temp = $(children[2]);
-			temp.stop();
-			temp.animate({ 'top': 100 - parseInt(temp.css('height').substring(0, temp.css('height').length - 2)) + 'px' });
-		}
-	});
-
-	$('#galleryThumbsFrame').on('mouseleave', '.thumbnail', function(){
-		$(this).stop().fadeTo(300, 0.5);
-		var children = $(this).children();
-		if(children.length > 2){
-			var temp = $(children[2]);
-			temp.stop();
-			temp.animate({ 'top': 100 + parseInt(temp.css('height').substring(0, temp.css('height').length - 2)) + 'px' });
-		}
-	});
-
-	$('#galleryThumbsFrame').on('click', '.thumbnailPic', function(){
-		var dis = $(this);
-		$('#highlightBox').fadeIn(500, function(){
-			switchBigPic(dis.parent());
-		});
-	});
-
-	document.oncontextmenu = function() {return false;};
-
-	$('#galleryThumbsFrame').on('mouseup', '.thumbnailPic', function(e){
-		if( e.button == 2 ) {
-			if($($(this).children()[1]).css("display") != "none"){
-				window.open($(this).attr('src'));
-			}
-			return false;
-		}
-		return true;
-	});
-});
-
-function randomBannerImg(){
-	var rnd = Math.floor(Math.random() * (banners.images.length - 1));
-	$('#frameHomeBanner').css("background-image", "url(" + banners.path + banners.images[rnd].fileName + ")");
+@font-face {
+    font-family: 'Capriola-Regular'; /*a name to be used later*/
+    src: url('font/Capriola-Regular.ttf'); /*URL to font*/
 }
 
-function loadBanners(ind){
-	if(ind < banners.images.length){
-		var img = new Image();
-		img.src = banners.path + banners.images[ind].fileName;
-		img.class = "forPreloading";
-		$(img).waitForImages({
-			waitForAll: true,
-			finished: function(){
-				loadBanners(ind + 1);
-			}
-		});
-	}else{
-		randomBannerImg();
-		$('#frameHomeBannerLoader').stop().fadeOut(100);
-		$('#frameHomeBanner').stop().fadeIn(300);
-	}
+body{
+	font-family:'Capriola-Regular';
+	font-size:12px;
+	background-color:#130F1F;
+	color:#FFF;
 }
 
-function loadGalleries(ind){
-	if(ind < galleries.length && insideGallery){
-		var banner = $('#galleryThumbsFrame').append('<div class="collectionName">' + '<span class="heart">♥</span> ' + galleries[ind].galleryName + '</div>').children();
-		banner = banner[banner.length - 1];
-		$('#galleryThumbsFrame').append('<div class="galleryBlankBreak"></div>');
-		$(banner).fadeIn("fast", function(){
-			loadGallery(ind, $(galleries[ind].galleryDatabase), imageDatabasePath + galleries[ind].galleryPath, 0, $(banner));
-			loadGalleries(ind + 1);
-		});
-	}
+p{
+  text-align: justify;
 }
 
-function loadGallery(galInd, gallery, path, ind, prevElem){
-	if(ind < gallery.length && insideGallery){
-		var newObj = '<div class="thumbnail">' +
-			'<div class="thumbnailLoadingFrame"><div class="thumbnailLoadingText">∙<span class="heart">♥</span> Loading <span class="heart">♥</span>∙ <br />(' + (ind + 1) + " / " + gallery.length + ')</div></div>' +
-			'<img class="thumbnailPic" src="' + path + gallery[ind].fileName + '">' +
-			'</div>';
-		newObj = $(newObj).insertAfter(prevElem);
-		var loaderObj = newObj.find('.thumbnailLoadingFrame');
-		loadingImage(loaderObj);
-		newObj.waitForImages({
-			waitForAll: true,
-			finished: function(){
-				loaderObj.stop().fadeOut(100, function(){
-					var base = newObj;
-					var curPic = base.find('.thumbnailPic');
-					curPic.css("left", "-" + gallery[ind].thumbLeft + "px")
-						.css("top", "-" + gallery[ind].thumbTop + "px")
-					curPic.fadeIn(500, function(){
-						var temp = base.append('<div class="thumbnailHover">' + gallery[ind].title + '</div>');
-						temp.children().find('.thumbnailHover').css('top', 100);
-						loadGallery(galInd, gallery, path, ind + 1, newObj);
-					});
-				});
-			}
-		});
-	}
+.mainNav{
+	font-size: 12px;
 }
 
-function loadAnimation(galInd, gallery, path, ind){
-	if(ind < gallery.length && insideAnimation){}
+a:link{
+	color: #FFF;
+	text-decoration: none;
 }
 
-function loadingImage(obj){
-	obj.fadeIn(300, function(){
-		obj.fadeOut(300, function(){
-			loadingImage(obj);
-		});
-	});
+a:hover{
+	color: #FFA7E5;
+	text-decoration: underline;
 }
 
-function clearGallery(){
-	$('#galleryThumbsFrame').empty();
+a:active{
+	color: #FFD8A7;
+	text-decoration: none;
 }
 
-
-function winResized() {
-	var $image=$('#lePic');
-	var $navLeft=$('#highlightBoxNavLeft');
-	var $navRight=$('#highlightBoxNavRight');
-	var $navLeftGlyph=$('#highlightBoxNavLeftGlyphicon');
-	var $navRightGlyph=$('#highlightBoxNavRightGlyphicon');
-
-	if ($image.size() && currentImageBig != null) {
-		var curImage = new Image();
-		curImage.src = currentImageBig;
-		var ww=$(window).width() - 40;
-		var wh=$(window).height() - 40;
-		var iw=curImage.width;
-		var ih=curImage.height;
-
-		var f=Math.min(ww/iw,wh/ih);
-		var iwr=Math.min(Math.round(iw*f), iw);
-		var ihr=Math.min(Math.round(ih*f), ih);
-		var left=(Math.round(ww-iwr)/2);
-		var top=(Math.round(wh-ihr)/2);
-
-		var glyphiconLeftWidth = $navLeftGlyph.css('width');
-		var glyphiconLeftHeight = $navLeftGlyph.css('height');
-		var glyphiconRightWidth = $navRightGlyph.css('width');
-		var glyphiconRightHeight = $navRightGlyph.css('height');
-
-		$image.css({
-			'position':'fixed',
-			'width': iwr,
-			'height': ihr,
-			'left': left +'px',
-			'top': top +'px'
-		});
-		$navLeft.css({
-			'left': left + 20 +'px',
-			'top': top + 20 +'px',
-			'height': ihr
-		});
-		$navRight.css({
-			'left': left + iwr - 120 + 20 +'px',
-			'top': top + 20 +'px',
-			'height': ihr
-		});
-		$navLeftGlyph.css({
-			'line-height': ihr + 'px'
-		});
-		$navRightGlyph.css({
-			'line-height': ihr + 'px'
-		});
-	}
-
-	// Find all YouTube videos
-	var $allVideos = $("iframe"),
-
-	    // The element that is fluid width
-	    $fluidEl = $("#galleryAnimationFrame");
-
-	// When the window is resized
-	// (You'll probably want to debounce this)
-	var newWidth = $fluidEl.width();
-
-	// Resize all videos according to their own aspect ratio
-	$allVideos.each(function() {
-
-		var $el = $(this);
-		$el
-			.width(newWidth / 2)
-			.height(newWidth * $el.data('aspectRatio') / 2);
-
-	});
+a:visited{
+	color: #FFF;
+	text-decoration: none;
 }
 
-function switchBigPic(nextPic){ // nextPic is the thumbnail obj
-	if(nextPic == null){
-		$('#highlightBox').fadeOut(300, function(){
-			$('#lePic').hide();
-			currentImageBig = null;
-		});
-	}else{
-		console.log("nextPic", nextPic);
-		$('.highlightBoxNav').attr('display', 'none');
-		$('#lePic').fadeOut(function(){
-			currentImageObj = nextPic;
-			var thumbnailInfo = $(nextPic.find('.thumbnailPic')[0]);
-			currentImageBig = thumbnailInfo.attr('src');
-			$('#lePic').attr('src', currentImageBig);
-			winResized();
-			$('#lePic').fadeIn(300);
-			$('.highlightBoxNav').attr('display', 'display');
-		});
-	}
+.unselectable{
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	/*
+	 Introduced in IE 10.
+	 See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+	*/
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#logoMain{
+	font-size:20px;
+	padding:0px;
+	margin-left:7px;
+	margin-top: 4px;
+}
+
+#forScrolling{
+	position: absolute;
+	background-color: transparent;
+	top: 10px; /* Header Height */
+    bottom: 10px; /* Footer Height */
+    left:10px;
+	right:10px;
+	overflow: auto;
+}
+
+#frameMain{
+	position: absolute;
+	border-radius:10px;
+	top: 10px; /* Header Height */
+    bottom: 10px; /* Footer Height */
+    left:10px;
+	right:10px;
+	overflow: auto;
+	background-color:#221B37;
+}
+
+#frameInnerTop{
+	position: relative;
+	padding: 10px;
+	top: 0px;
+	height: 30px;
+	border-radius:10px 10px 0px 0px;
+	background-color:#561A3D;
+	border-bottom: 5px solid #130F1F;
+}
+
+#frameSubTop{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	height: 15px;
+	background-color: #6D3575;
+	border-bottom: 5px solid #130F1F;
+}
+
+#frameHomeBanner{
+	position:relative;
+	height: 200px;
+	background-color:#808080;
+	overflow:hidden;
+	background-repeat:repeat-x;
+	display: none;
+}
+
+#frameHomeBannerLoader{
+	position: absolute;
+	display: none;
+	font-size: 16px;
+	width: 100%;
+	height: 200px;
+	line-height: 200px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#frameHomeBannerDummy{
+	position:relative;
+	height: 200px;
+	background-color:#130F1F;
+	border-bottom: 5px solid #130F1F;
+	overflow:hidden;
+}
+
+#frameHomeContent{
+	position:relative;
+	padding:5px 17px 5px 17px;
+}
+
+.forPreloading{
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	display: none;
+	opacity: 0;
+	overflow: hidden;
+}
+
+#gallerySubmenu{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	height: 15px;
+	background-color:#564A7B;
+	border-bottom: 5px solid #130F1F;
+	display: none;
+}
+
+#galleryThumbsFrame{
+	position: relative;
+	padding: 10px;
+}
+
+#galleryAnimationFrame{
+	position: relative;
+	padding: 10px;
+  display: none;
+}
+
+#gallery3dFrame{
+  position: relative;
+	padding: 10px;
+  display: none;
+}
+
+.thumbnail{
+	position:relative;
+	width: 100px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+	overflow: hidden;
+	opacity: 0.5;
+  vertical-align: middle;
+}
+
+.thumbnailPic{
+	position: absolute;
+	display: none;
+}
+
+.thumbnailLoadingFrame{
+	position: absolute;
+	display: inline-block;
+	display: none;
+	font-size: 14px;
+	width: 100px;
+	height: 100px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.thumbnailLoadingText{
+	display: inline-block;
+	font-size: 12px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.thumbnailHover{
+	position: absolute;
+	width: 100px;
+	top: 100px;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.thumbnailDescFrame{
+	display: none;
+	position: absolute;
+	width: 100px;
+	height: auto;
+	z-index: 100;
+}
+
+.thumbnailDesc{
+	position: absolute;
+	top: 5px;
+	width: 100%;
+	height: auto;
+	padding: 5px;
+	font-size: 11px;
+	border-radius: 5px;
+	background-color: rgba(225, 225, 225, .9);
+	color: #000;
+}
+
+.thumbnailDescArrow {
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	left: 50%;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid rgba(225, 225, 225, .9);
+}
+
+#frameAboutContent{
+	position: relative;
+	padding:5px 17px 5px 17px;
+	display: none;
+}
+
+.collectionName{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: transparent;
+	display: none;
+	text-align: left;
+	vertical-align: middle;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+#highlightBox{
+	position: absolute;
+	top: 0px; /* Header Height */
+    bottom: 0px; /* Footer Height */
+    left:0px;
+	right:0px;
+	background-color: rgba(0, 0, 0, .5);
+	display: none;
+}
+
+#lePic{
+	position: fixed;
+	display: none;
+	border: 20px solid rgba(0, 0, 0, .5);
+}
+
+.highlightBoxNav{
+	font-size: 30px;
+	color: #FFF;
+	position: fixed;
+	text-align: center;
+	width: 120px;
+	background-color: rgba(0, 0, 0, .5);
+	opacity: 0;
+}
+
+.highlightBoxNavSymbol{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.galleryBlankBreak{
+	width: 100%;
+	height: 30px;
+	background-color: transparent;
+	display: inline-block;
+}
+
+.aboutMePortrait{
+  float: left;
+  padding-top: 10px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+}
+
+.heart{
+  color: #8E2D57;
 }
